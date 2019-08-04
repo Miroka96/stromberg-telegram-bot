@@ -1,4 +1,4 @@
-package stromberg_bot
+package main
 
 import (
 	"encoding/json"
@@ -11,8 +11,8 @@ import (
 const configFilePath = "config.json"
 
 type Config struct {
-	BotToken	string `json:"bot_token"`
-	BaseUrl		string `json:"base_url"`
+	BotToken string `json:"bot_token"`
+	BaseUrl  string `json:"base_url"`
 }
 
 var Conf *Config
@@ -35,8 +35,8 @@ func readConfigFile() {
 	}
 }
 
-
 func main() {
+	readConfigFile()
 	bot, err := tgbotapi.NewBotAPI(Conf.BotToken)
 	if err != nil {
 		log.Fatal(err)
@@ -46,7 +46,7 @@ func main() {
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	_, err = bot.SetWebhook(tgbotapi.NewWebhook(Conf.BaseUrl+bot.Token))
+	_, err = bot.SetWebhook(tgbotapi.NewWebhook(Conf.BaseUrl + bot.Token))
 	if err != nil {
 		log.Fatal(err)
 	}
