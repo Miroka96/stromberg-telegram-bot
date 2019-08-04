@@ -1,6 +1,8 @@
 # https://github.com/Miroka96/docker-makefile
 
-NAME = miroka96/stromberg-telegram-bot
+CONTAINERNAME = stromberg-telegram-bot
+
+NAME = miroka96/$(CONTAINERNAME)
 TAG = 1.0
 
 LOCALPORT = 8080
@@ -29,13 +31,13 @@ test-shell:
 build-test: build test
 
 deploy:
-	docker run --detach --restart always --name=$(NAME) $(PORTPUBLISHING) $(IMAGE)
+	docker run --detach --restart always --name=$(CONTAINERNAME) $(PORTPUBLISHING) $(IMAGE)
 
 build-deploy: build deploy
 
 undeploy:
-	-docker stop $(NAME)
-	docker rm $(NAME)
+	-docker stop $(CONTAINERNAME)
+	docker rm $(CONTAINERNAME)
 
 redeploy: undeploy deploy
 
@@ -45,6 +47,6 @@ clean-volume:
 	-docker volume rm $(VOLUME)
 
 clean-container:
-	-docker rm $(NAME)
+	-docker rm $(CONTAINERNAME)
 
 clean: clean-volume clean-container

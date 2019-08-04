@@ -60,7 +60,7 @@ func main() {
 		log.Printf("Telegram callback last failed: %s", info.LastErrorMessage)
 	}
 	updates := bot.ListenForWebhook("/" + bot.Token)
-	go http.ListenAndServe("127.0.0.1:8080", nil)
+	go http.ListenAndServe("0.0.0.0:8080", nil)
 
 	for update := range updates {
 		log.Printf("%+v\n", update)
