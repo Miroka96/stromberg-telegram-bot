@@ -15,7 +15,7 @@ type Config struct {
 	BaseUrl  string `json:"base_url"`
 }
 
-var Conf *Config
+var Conf Config
 
 func readConfigFile() {
 	file, err := os.Open(configFilePath)
@@ -25,7 +25,7 @@ func readConfigFile() {
 	log.Println("opened config file")
 
 	decoder := json.NewDecoder(file)
-	err = decoder.Decode(Conf)
+	err = decoder.Decode(&Conf)
 	if err != nil {
 		log.Fatal(err)
 	}
