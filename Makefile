@@ -5,7 +5,7 @@ CONTAINERNAME = stromberg-telegram-bot
 NAME = miroka96/$(CONTAINERNAME)
 TAG = 1.0
 
-LOCALPORT = 8080
+LOCALPORT = 127.0.0.1:8080
 CONTAINERPORT = 8080
 
 # if you want a special image name, edit this
